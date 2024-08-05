@@ -1,0 +1,13 @@
+.env/*
+.idea/*
+
+Dockerfile
+.dockerignore
+.gitignore
+README*
+
+venv/*
+*/__pycache__/*
+dump/*
+
+scripts/*

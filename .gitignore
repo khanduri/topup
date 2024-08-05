@@ -1,0 +1,75 @@
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib/*
+lib64
+__pycache__
+*app.db-journal
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# SQLite databases
+*.sqlite
+*app.db
+
+# Virtual environment
+.python-version
+venv
+
+# Redis
+dump.rdb
+
+*.DS_Store
+*.idea/
+*.env
+
+*secrets*
+
+*node_modules*
+ui/node_modules
+ui/coverage
+ui/build
+!ui/.env*
+
+www/node_modules
+www/coverage
+www/build
+!www/.env*
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+dump/*
+dump_*
+
+sdk/lib/debug/*
+
