@@ -41,8 +41,14 @@ class BeneficiaryLogic(object):
     
     @classmethod
     def update_beneficiary(cls, organization_xid, user_xid, beneficiary_xid, activate):
+        result = cls.fetch_beneficiaries(organization_xid, user_xid)
+        allowed = (len([r for r in result['beneficiaries'] if r['data']['active']]) < MAX_ACTIVE_BENEFICIARIES)
+
+        if not allowed and activate:
+            return None, "Exceeding active beneficiaries limit!"
+
         data = BeneficiaryDepot.update_beneficiary(organization_xid, user_xid,  beneficiary_xid, activate)
-        return data
+        return data, None
     
     @classmethod
     def remove_beneficiaries(cls, organization_xid, user_xid):
@@ -67,7 +73,6 @@ class BeneficiaryLogic(object):
         user_details = UserTopUpLogic.fetch_user_details(organization_xid, user_xid, range=(start_time, end_time))
         user_state = user_details['user_state']
 
-        print(user_state)
         user_balance = user_state['data'].get('balance', 0)
         topup_charge = topup_balance + TOPUP_FEES
 

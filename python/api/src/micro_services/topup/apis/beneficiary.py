@@ -59,6 +59,9 @@ def post_beneficiary_activate(payload, beneficiary_xid):
 
     activate = request.json['activate']
     
-    payload = logic.BeneficiaryLogic.update_beneficiary(organization_xid, user_xid, beneficiary_xid, activate)
+    payload, error_reason = logic.BeneficiaryLogic.update_beneficiary(organization_xid, user_xid, beneficiary_xid, activate)
+
+    if error_reason:
+        return api_response.return_packet_fail(Reason.INVALID, message=error_reason, response_code=400)
 
     return api_response.return_packet_success(payload)

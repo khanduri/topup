@@ -11,6 +11,8 @@ export default function Modal(props: any) {
   const { beneficiary, forceFetchCtr, setForceFetchCtr } = props;
 
   const [showModal, setShowModal] = React.useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errorReason, setErrorReason] = useState("");
   const [balanceToAdd, setBalanceToAdd] = React.useState(0);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,6 +24,7 @@ export default function Modal(props: any) {
     beneficiary_xid: string,
     activate: boolean
   ) => {
+    setShowError(false);
     try {
       setLoadingActivate(true);
 
@@ -39,13 +42,15 @@ export default function Modal(props: any) {
           body: JSON.stringify(body),
         }
       );
-      if (!response.ok) {
-        throw new Error(`HTTP error: Status ${response.status}`);
-      }
       let response_data = await response.json();
+      if (!response.ok) {
+        throw new Error(`${response_data.data.message}`);
+      }
 
       setForceFetchCtr(forceFetchCtr + 1);
-    } catch (err) {
+    } catch (err: any) {
+      setShowError(true);
+      setErrorReason(err.message);
     } finally {
       setLoadingActivate(false);
     }
@@ -84,6 +89,14 @@ export default function Modal(props: any) {
           <div className="font-normal justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                {showError ? (
+                  <div className=" border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+                    <p>Unable to Activate</p>
+                    <p className="text-xs">{errorReason}</p>
+                  </div>
+                ) : (
+                  ""
+                )}
                 <div className="flex items-start justify-between p-5 border-b border-solid  rounded-t">
                   <h3 className="text-3xl font-semibold">
                     {beneficiary.data.active
