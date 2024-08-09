@@ -25,6 +25,7 @@ def create_app(config=None):
     from src import depot  # noqa: E402,F401
     from src.micro_services.system import apis  # noqa: E402,F401
     from src.micro_services.users import apis  # noqa: E402,F401
+    from src.micro_services.topup import apis  # noqa: E402,F401
 
     # db.init_app(app)
     mongo.init_app(app)
@@ -32,6 +33,7 @@ def create_app(config=None):
     app.register_blueprint(no_path_api_v1_bp, url_prefix='/')
     app.register_blueprint(users_api_v1_bp, url_prefix='/api/v1/users')
     app.register_blueprint(generics_api_v1_bp, url_prefix='/api/v1/generics')
+    app.register_blueprint(topup_api_v1_bp, url_prefix='/api/v1/topup')
 
     @app.before_request
     def before():
@@ -65,3 +67,4 @@ def create_app(config=None):
 no_path_api_v1_bp = Blueprint('no_path_apis', __name__)
 generics_api_v1_bp = Blueprint('generics_apis', __name__)
 users_api_v1_bp = Blueprint('users_apis', __name__)
+topup_api_v1_bp = Blueprint('topup_apis', __name__)

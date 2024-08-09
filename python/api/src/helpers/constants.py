@@ -63,6 +63,6 @@ class Reason(Enum):
 
         message = parent_message
         if child_message:
-            message = "{} - Error details: {}".format(message, child_message)
+            message = "{} - Details: {}".format(message, child_message)
 
         return message

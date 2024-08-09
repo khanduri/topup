@@ -28,7 +28,9 @@ def _decode_token(token, secret_key, leeway=0):
 
 
 def _encode_token(payload, secret_key):
-    return jwt.encode(payload, secret_key, algorithm='HS256').decode('utf-8')
+    return jwt.encode(payload, secret_key, algorithm='HS256')
+    # return jwt.encode(payload, secret_key, algorithm='HS256').decode('utf-8')
+    
 
 
 def encode_user_auth_token(payload, expires_in=60*60*24*int(os.environ.get("CONST_UX_USER_AUTH_TOKEN_EXPIRE_DAY_COUNT", 1))):
@@ -46,6 +48,7 @@ def encode_user_auth_token(payload, expires_in=60*60*24*int(os.environ.get("CONS
 def user_auth_token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
+
         auth_header = request.headers.get('Authorization')
         # token = auth_header.split(" ")[1] if auth_header else None
         auth_sections = auth_header.split(" ") if auth_header else []
@@ -73,7 +76,7 @@ def user_auth_token_required(f):
 
         secret_key = current_app.config['USER_AUTH_SECRET_KEY']
         try:
-            payload = _decode_token(token, secret_key, leeway=leeway)
+            payload = _decode_token(token.strip('"'), secret_key, leeway=leeway)
             oxid = payload['organization_xid']
             uxid = payload['user_xid']
 

@@ -45,7 +45,7 @@ class Config(object):
     _mongo_db_name = os.environ.get('MONGO_DB', 'skeleton-dev')
     _mongo_hosts = os.environ.get('MONGO_HOSTS', 'localhost')
     _mongo_options = os.environ.get('MONGO_OPTIONS', 'localhost')
-    MONGO_URI = "mongodb://{user}:{password}@{hosts}/{database}{options}".format(
+    MONGO_URI = "mongodb://{user}:{password}@{hosts}/{database}?{options}".format(
                 user=_mongo_user, password=_mongo_password, hosts=_mongo_hosts, database=_mongo_db_name, options=_mongo_options)
     if not _mongo_password:
         MONGO_URI = "mongodb://{hosts}/{database}".format(hosts=_mongo_hosts, database=_mongo_db_name)

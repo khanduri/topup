@@ -27,7 +27,7 @@ def return_packet_fail(reason, message=None, response_code=403):
     return _pack_response(response, meta=meta, response_code=response_code)
 
 
-def return_packet_success(data=None):
+def return_packet_success(data=None, response_code=200):
     meta = {'success': True}
     data = data if data else {}
-    return _pack_response(data, meta=meta)
+    return _pack_response(data, meta=meta, response_code=response_code)

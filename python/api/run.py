@@ -9,6 +9,7 @@ def _print_config_variable():
 
     environ_vars = [
         'APP_SETTINGS',
+        'TARGET_SUB_DOMAIN',
     ]
     config_vars = [
         'DEBUG',
