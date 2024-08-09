@@ -144,6 +144,11 @@ export default function Modal(props: any) {
                       }
                     >
                       {beneficiary.data.active ? "Deactivate" : "Activate"}
+                      {loadingActivate ? (
+                        <LoadingSVG className="w-6 h-6 text-gray-300" />
+                      ) : (
+                        ""
+                      )}
                     </button>
                   </div>
                 </div>

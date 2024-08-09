@@ -164,6 +164,11 @@ export default function Modal(props: any) {
                       onClick={() => onBeneficiaryTopup(beneficiary.xid)}
                     >
                       TopUp Account
+                      {loadingAddBeneficiary ? (
+                        <LoadingSVG className="w-6 h-6 text-gray-300" />
+                      ) : (
+                        ""
+                      )}
                     </button>
                     <div className="mt-3 text-gray-400 text-xs ">
                       A transaction fees of 1 AED will be applied when

@@ -178,7 +178,7 @@ export default function Modal(props: any) {
                     >
                       Add Beneficiary
                       {loadingAddBeneficiary ? (
-                        <LoadingSVG className="w-8 h-8 text-gray-300" />
+                        <LoadingSVG className="w-6 h-6 text-gray-300" />
                       ) : (
                         ""
                       )}

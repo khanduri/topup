@@ -9,6 +9,7 @@ import SidenavLayout from "pages/layout/sidenav";
 
 import { BalanceCard, UsageCard, ActivityCard } from "components/cards";
 import Title from "components/convention/title";
+import LoadingSVG from "images/loading";
 
 export default function Page() {
   const [loadingOptions, setLoadingOptions] = useState(false);
@@ -85,7 +86,9 @@ export default function Page() {
     fetchTopupOptions();
   }, [forceFetchCtr]);
 
+  const [loadingRunClean, setLoadingRunClean] = useState(false);
   const runCleanSlate = async () => {
+    setLoadingRunClean(true);
     try {
       const response = await fetch(BASE_URL + "/api/v1/topup/cleanslate", {
         method: "GET",
@@ -101,9 +104,12 @@ export default function Page() {
       setForceFetchCtr(forceFetchCtr + 1);
     } catch (err) {
     } finally {
+      setLoadingRunClean(false);
     }
   };
+  const [loadingRunBootstrap, setLoadingRunBootstrap] = useState(false);
   const runBootstrap = async () => {
+    setLoadingRunBootstrap(true);
     try {
       const response = await fetch(BASE_URL + "/api/v1/topup/bootstrap", {
         method: "GET",
@@ -119,6 +125,7 @@ export default function Page() {
       setForceFetchCtr(forceFetchCtr + 1);
     } catch (err) {
     } finally {
+      setLoadingRunBootstrap(false);
     }
   };
 
@@ -134,12 +141,22 @@ export default function Page() {
               onClick={runCleanSlate}
             >
               Reset All Data
+              {loadingRunClean ? (
+                <LoadingSVG className="w-6 h-6 text-gray-300" />
+              ) : (
+                ""
+              )}
             </button>
             <button
               className="m-2 p-2 rounded bg-blue-600 text-white"
               onClick={runBootstrap}
             >
               Populate Sample Data
+              {loadingRunBootstrap ? (
+                <LoadingSVG className="w-6 h-6 text-gray-300" />
+              ) : (
+                ""
+              )}
             </button>
           </div>
         </div>
