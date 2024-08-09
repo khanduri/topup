@@ -1,0 +1,15 @@
+############################################################
+# DO NOT PUT SENSITIVE INFORMATION IN THESE FILES
+# No account passwords / secrets etc ..
+# UI env gets compiled and injected into react code, so
+# values in here will leak into the browser.
+#
+# Talk to the infra team if you need to pass in any secrets in UI
+############################################################
+
+NODE_PATH=src/
+
+REACT_APP_API_DOMAIN=https://stage-api-projectskeleton.com
+
+REACT_APP_SOCIAL_AUTH_GOOGLE_APP_ID=732949384555-qek44d7nj35cg2s8rdvq4qsbecng9gh7.apps.googleusercontent.com
+REACT_APP_GA_CODE=

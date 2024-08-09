@@ -2,7 +2,8 @@ import axios from "axios";
 
 import { getStoredToken, deleteToken } from "utils/authentication";
 
-export const BASE_URL = "http://localhost:5000";
+// export const BASE_URL = "http://localhost:5000";
+export const BASE_URL = process.env.REACT_APP_API_DOMAIN;
 
 let API = generateAPIInstance(getStoredToken());
 function generateAPIInstance(jwt_token) {
