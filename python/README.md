@@ -19,6 +19,10 @@ LIVE @ https://topup-app.bytebeacon.com/
 
 #### Notes for devs:
 
+- Start with: https://github.com/khanduri/topup/tree/main/python/api/src/micro_services/topup/apis
+- Logic / Controller: https://github.com/khanduri/topup/tree/main/python/api/src/micro_services/topup/logic
+- Data / Repository: https://github.com/khanduri/topup/tree/main/python/api/src/depot/topup
+
 - The backend is written in Python / Flask and can scale very well as each API is stateless and requires context be passed via REST API
 - The backend databases aceess are primarily done through a Repository pattern / Data access layer. All code will be under teh "Depot" module. This makes the services stateless. This is easier to test / maintain in the long run.
 - Each "service" can be a separate deployment target for the future. This way we can keep all services in a single repo, but scale the application as we please in the future (This is a hybrid approach to monolith and SOA that helps in testing and staging setups as well). Happy to chat more about this if there are questions.
