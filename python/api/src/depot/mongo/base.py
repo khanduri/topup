@@ -19,6 +19,10 @@ class TableEnum(enum.Enum):
     USER_SOCIAL = Table('user_social')
     USER_LOGIN_CODE = Table('user_login_code')
 
+    TOPUP_USER_STATE = Table('topup_user_state')
+    TOPUP_USER_ACTIVITY = Table('topup_user_activity')
+    TOPUP_BENEFICIARY = Table('topup_beneficiary')
+
 
 _mongo_connections = {}
 
@@ -43,6 +47,10 @@ def mongo_db(collection_name):
             TableEnum.USER.name:               mongo.db.user,
             TableEnum.USER_SOCIAL.name:        mongo.db.user_social,
             TableEnum.USER_LOGIN_CODE.name:    mongo.db.user_login_code,
+
+            TableEnum.TOPUP_USER_STATE.name:       mongo.db.topup_user_state,
+            TableEnum.TOPUP_USER_ACTIVITY.name:    mongo.db.topup_user_actiivity,
+            TableEnum.TOPUP_BENEFICIARY.name:      mongo.db.topup_beneficiary,
 
         }
     return _mongo_connections[collection_name]

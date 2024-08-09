@@ -103,7 +103,7 @@ class UserSocial(BaseMixin):
         update = {
             "$set": {"access_code": access_code},
         }
-        mongo_db(cls._table_name).update(search_criteria, update)
+        mongo_db(cls._table_name).update_one(search_criteria, update)
 
     @classmethod
     def update_organization(cls, user_xid, organization_xid):
